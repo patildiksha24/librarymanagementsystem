@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CloudStore - File Explorer</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/explorer.css">
+</head>
+<body class="explorer-page">
+  <div class="page-transition"></div>
+  
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <span class="logo-icon">☁️</span>
+        <span class="logo-text">CloudStore</span>
+      </div>
+      <nav class="main-nav">
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+          <li class="nav-item"><a href="explorer.html" class="nav-link active">Explorer</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="explorer-main">
+    <div class="explorer-container">
+      <div class="explorer-header">
+        <h1>File Explorer</h1>
+        <div class="explorer-actions">
+          <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search files...">
+            <button class="search-btn">🔍</button>
+          </div>
+          <button class="btn btn-primary" id="uploadBtn">Upload Files</button>
+          <input type="file" id="explorerFileInput" multiple hidden>
+        </div>
+      </div>
+
+      <div class="breadcrumb">
+        <ul class="breadcrumb-list">
+          <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Home</a></li>
+          <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Documents</a></li>
+        </ul>
+      </div>
+
+      <div class="explorer-view">
+        <div class="explorer-sidebar">
+          <h3>Locations</h3>
+          <ul class="location-list">
+            <li class="location-item active"><a href="#" class="location-link">My Files</a></li>
+            <li class="location-item"><a href="#" class="location-link">Shared with me</a></li>
+            <li class="location-item"><a href="#" class="location-link">Recent</a></li>
+            <li class="location-item"><a href="#" class="location-link">Favorites</a></li>
+            <li class="location-item"><a href="#" class="location-link">Trash</a></li>
+          </ul>
+          
+          <h3>Buckets</h3>
+          <ul class="bucket-list">
+            <li class="bucket-item active"><a href="#" class="bucket-link">main-bucket</a></li>
+            <li class="bucket-item"><a href="#" class="bucket-link">backup-bucket</a></li>
+            <li class="bucket-item"><a href="#" class="bucket-link">media-bucket</a></li>
+          </ul>
+        </div>
+
+        <div class="explorer-content">
+          <div class="view-options">
+            <div class="view-toggle">
+              <button class="view-btn active" data-view="grid">
+                <span class="view-icon">🗂️</span>
+                <span class="view-text">Grid</span>
+              </button>
+              <button class="view-btn" data-view="list">
+                <span class="view-icon">📋</span>
+                <span class="view-text">List</span>
+              </button>
+            </div>
+            <div class="sort-options">
+              <label for="sortBy">Sort by:</label>
+              <select id="sortBy" class="sort-select">
+                <option value="name">Name</option>
+                <option value="date">Date</option>
+                <option value="size">Size</option>
+                <option value="type">Type</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="files-grid active" id="filesGrid">
+            <div class="file-card folder">
+              <div class="file-icon">📁</div>
+              <div class="file-name">Projects</div>
+            </div>
+            <div class="file-card folder">
+              <div class="file-icon">📁</div>
+              <div class="file-name">Images</div>
+            </div>
+            <div class="file-card document">
+              <div class="file-icon">📄</div>
+              <div class="file-name">Report.docx</div>
+            </div>
+            <div class="file-card spreadsheet">
+              <div class="file-icon">📊</div>
+              <div class="file-name">Budget.xlsx</div>
+            </div>
+            <div class="file-card presentation">
+              <div class="file-icon">📑</div>
+              <div class="file-name">Presentation.pptx</div>
+            </div>
+            <div class="file-card image">
+              <div class="file-icon">🖼️</div>
+              <div class="file-name">Logo.png</div>
+            </div>
+            <div class="file-card audio">
+              <div class="file-icon">🎵</div>
+              <div class="file-name">Podcast.mp3</div>
+            </div>
+            <div class="file-card video">
+              <div class="file-icon">🎬</div>
+              <div class="file-name">Tutorial.mp4</div>
+            </div>
+            <div class="file-card archive">
+              <div class="file-icon">🗄️</div>
+              <div class="file-name">Archive.zip</div>
+            </div>
+            <div class="file-card code">
+              <div class="file-icon">📝</div>
+              <div class="file-name">Script.js</div>
+            </div>
+          </div>
+
+          <div class="files-list" id="filesList">
+            <table class="files-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Size</th>
+                  <th>Modified</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="file-row folder">
+                  <td class="file-name-cell"><span class="file-icon">📁</span> Projects</td>
+                  <td>Folder</td>
+                  <td>-</td>
+                  <td>Yesterday</td>
+                  <td class="actions-cell">
+                    <button class="action-btn">⬇️</button>
+                    <button class="action-btn">🗑️</button>
+                  </td>
+                </tr>
+                <tr class="file-row folder">
+                  <td class="file-name-cell"><span class="file-icon">📁</span> Images</td>
+                  <td>Folder</td>
+                  <td>-</td>
+                  <td>Yesterday</td>
+                  <td class="actions-cell">
+                    <button class="action-btn">⬇️</button>
+                    <button class="action-btn">🗑️</button>
+                  </td>
+                </tr>
+                <tr class="file-row document">
+                  <td class="file-name-cell"><span class="file-icon">📄</span> Report.docx</td>
+                  <td>DOCX</td>
+                  <td>2.3 MB</td>
+                  <td>Today</td>
+                  <td class="actions-cell">
+                    <button class="action-btn">⬇️</button>
+                    <button class="action-btn">🗑️</button>
+                  </td>
+                </tr>
+                <tr class="file-row spreadsheet">
+                  <td class="file-name-cell"><span class="file-icon">📊</span> Budget.xlsx</td>
+                  <td>XLSX</td>
+                  <td>1.5 MB</td>
+                  <td>3 days ago</td>
+                  <td class="actions-cell">
+                    <button class="action-btn">⬇️</button>
+                    <button class="action-btn">🗑️</button>
+                  </td>
+                </tr>
+                <tr class="file-row presentation">
+                  <td class="file-name-cell"><span class="file-icon">📑</span> Presentation.pptx</td>
+                  <td>PPTX</td>
+                  <td>5.2 MB</td>
+                  <td>1 week ago</td>
+                  <td class="actions-cell">
+                    <button class="action-btn">⬇️</button>
+                    <button class="action-btn">🗑️</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer explorer-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 CloudStore. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/explorer.js"></script>
+</body>
+</html>

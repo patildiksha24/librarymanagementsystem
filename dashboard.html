@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CloudStore - Dashboard</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dashboard-page">
+  <div class="page-transition"></div>
+  
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <span class="logo-icon">☁️</span>
+        <span class="logo-text">CloudStore</span>
+      </div>
+      <nav class="main-nav">
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="dashboard.html" class="nav-link active">Dashboard</a></li>
+          <li class="nav-item"><a href="explorer.html" class="nav-link">Explorer</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="dashboard-wrapper">
+    <aside class="sidebar">
+      <ul class="sidebar-menu">
+        <li class="sidebar-item active">
+          <a href="#overview" class="sidebar-link">
+            <span class="sidebar-icon">📊</span>
+            <span class="sidebar-text">Overview</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#storage" class="sidebar-link">
+            <span class="sidebar-icon">💾</span>
+            <span class="sidebar-text">Storage</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#activity" class="sidebar-link">
+            <span class="sidebar-icon">📈</span>
+            <span class="sidebar-text">Activity</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a href="#settings" class="sidebar-link">
+            <span class="sidebar-icon">⚙️</span>
+            <span class="sidebar-text">Settings</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <main class="dashboard-main">
+      <div class="dashboard-header">
+        <h1>Dashboard</h1>
+        <div class="user-profile">
+          <div class="notification-icon">🔔</div>
+          <div class="profile-image">👤</div>
+          <div class="user-name">John Doe</div>
+        </div>
+      </div>
+
+      <section id="overview" class="dashboard-section active">
+        <div class="widget-grid">
+          <div class="widget storage-widget">
+            <h3 class="widget-title">Storage Usage</h3>
+            <div class="storage-chart">
+              <div class="chart-container">
+                <div class="donut-chart">
+                  <div class="donut-segment" style="--percentage: 65; --fill: var(--primary-color);"></div>
+                  <div class="donut-hole">65%</div>
+                </div>
+              </div>
+              <div class="storage-stats">
+                <div class="stat">
+                  <div class="stat-label">Used</div>
+                  <div class="stat-value">65 GB</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-label">Free</div>
+                  <div class="stat-value">35 GB</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-label">Total</div>
+                  <div class="stat-value">100 GB</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="widget activity-widget">
+            <h3 class="widget-title">Recent Activity</h3>
+            <ul class="activity-list">
+              <li class="activity-item">
+                <div class="activity-icon">📤</div>
+                <div class="activity-details">
+                  <div class="activity-title">Uploaded presentation.pptx</div>
+                  <div class="activity-time">2 hours ago</div>
+                </div>
+              </li>
+              <li class="activity-item">
+                <div class="activity-icon">📥</div>
+                <div class="activity-details">
+                  <div class="activity-title">Downloaded report.pdf</div>
+                  <div class="activity-time">Yesterday</div>
+                </div>
+              </li>
+              <li class="activity-item">
+                <div class="activity-icon">🗑️</div>
+                <div class="activity-details">
+                  <div class="activity-title">Deleted old_data.zip</div>
+                  <div class="activity-time">3 days ago</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="widget files-widget">
+            <h3 class="widget-title">Quick Upload</h3>
+            <div class="upload-area" id="uploadArea">
+              <div class="upload-icon">📁</div>
+              <p class="upload-text">Drag & drop files here or</p>
+              <button class="btn btn-secondary" id="browseBtn">Browse Files</button>
+              <input type="file" id="fileInput" multiple hidden>
+            </div>
+            <div class="upload-progress hidden" id="uploadProgress">
+              <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+              </div>
+              <div class="progress-text">Uploading... <span id="progressPercent">0</span>%</div>
+            </div>
+          </div>
+
+          <div class="widget types-widget">
+            <h3 class="widget-title">File Types</h3>
+            <div class="file-types-chart">
+              <div class="type-bar">
+                <div class="type-label">Images</div>
+                <div class="type-track">
+                  <div class="type-fill" style="width: 40%"></div>
+                </div>
+                <div class="type-value">40%</div>
+              </div>
+              <div class="type-bar">
+                <div class="type-label">Documents</div>
+                <div class="type-track">
+                  <div class="type-fill" style="width: 30%"></div>
+                </div>
+                <div class="type-value">30%</div>
+              </div>
+              <div class="type-bar">
+                <div class="type-label">Videos</div>
+                <div class="type-track">
+                  <div class="type-fill" style="width: 15%"></div>
+                </div>
+                <div class="type-value">15%</div>
+              </div>
+              <div class="type-bar">
+                <div class="type-label">Others</div>
+                <div class="type-track">
+                  <div class="type-fill" style="width: 15%"></div>
+                </div>
+                <div class="type-value">15%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer dashboard-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 CloudStore. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
